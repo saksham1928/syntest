@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar/Navbar';
-import VideoPlayer from './components/VideoPlayer/VideoPlayer';
+import AutoControlledVideo from './components/AutoControlledVideo/AutoControlledVideo';
 
 function App() {
   return (
@@ -15,10 +15,9 @@ function App() {
         </div>
 
         {/* 3. The Video Player Component */}
-        <VideoPlayer />
+        {/* <VideoPlayer /> */}
       </main>
+      <AutoControlledVideo />;
     </div>
   );
-}
-
-export default App; 
+}export default App; 
