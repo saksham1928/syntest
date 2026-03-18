@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import Webcam from "react-webcam";
 import { FACE_DETECTION_CONFIG } from "../../utils/faceDetectionConfig";
+import { Card, Badge } from "react-bootstrap";
 
 const WebcamMonitor = forwardRef(({ isFocused, debugInfo, showPreview = true }, ref) => {
   if (!showPreview) {
@@ -21,41 +22,45 @@ const WebcamMonitor = forwardRef(({ isFocused, debugInfo, showPreview = true }, 
     );
   }
 
-  return (
-    <div style={{ marginBottom: "20px" }}>
-      <h3 style={{ color: 'black' }}>Webcam Monitor</h3>
-      <Webcam
-        ref={ref}
-        audio={false}
-        width={FACE_DETECTION_CONFIG.PREVIEW_WIDTH}
-        height={FACE_DETECTION_CONFIG.PREVIEW_HEIGHT}
-        screenshotFormat="image/jpeg"
-        videoConstraints={{
-          width: FACE_DETECTION_CONFIG.WEBCAM_WIDTH,
-          height: FACE_DETECTION_CONFIG.WEBCAM_HEIGHT,
-          facingMode: "user",
-        }}
-        style={{
-          border: isFocused ? "3px solid #28a745" : "3px solid #dc3545",
-          borderRadius: "8px",
-        }}
-      />
+  // Determine colors based on focus state
+  const borderColor = isFocused ? "border-success" : "border-danger";
+  const badgeColor = isFocused ? "success" : "danger";
+  const bgColor = isFocused ? "bg-success" : "bg-danger";
 
-      {/* Status Display */}
-      <div
-        style={{
-          marginTop: "10px",
-          padding: "15px",
-          backgroundColor: isFocused ? "#097923" : "#7d0812",
-          border: `2px solid ${isFocused ? "#28a745" : "#dc3545"}`,
-          borderRadius: "8px",
-        }}
-      >
-        <strong>Status:</strong> {isFocused ? "Focused" : "Not Focused"}
-        <br />
-        <small style={{ fontFamily: "monospace" }}>{debugInfo}</small>
-      </div>
-    </div>
+  return (
+    <Card className={`shadow-sm border-2 ${borderColor}`}>
+      <Card.Header className="d-flex justify-content-between align-items-center bg-white">
+        <h6 className="mb-0 fw-bold text-dark">Camera Feed</h6>
+        <Badge bg={badgeColor} pill className="px-3">
+          {isFocused ? "Focused" : "Distracted"}
+        </Badge>
+      </Card.Header>
+      
+      <Card.Body className="p-2 text-center bg-dark">
+        <Webcam
+          ref={ref}
+          audio={false}
+          width="100%" // Make it fill the card width dynamically
+          screenshotFormat="image/jpeg"
+          videoConstraints={{
+            width: FACE_DETECTION_CONFIG.WEBCAM_WIDTH,
+            height: FACE_DETECTION_CONFIG.WEBCAM_HEIGHT,
+            facingMode: "user",
+          }}
+          style={{
+            borderRadius: "4px",
+            objectFit: "cover",
+            maxHeight: "240px" // Keep it from getting too tall
+          }}
+        />
+      </Card.Body>
+      
+      <Card.Footer className={`${bgColor} text-white bg-opacity-10 py-2`}>
+        <small className="font-monospace text-dark d-block text-truncate" style={{ fontSize: '0.75rem' }}>
+          {debugInfo || "Waiting for detection..."}
+        </small>
+      </Card.Footer>
+    </Card>
   );
 });
 
