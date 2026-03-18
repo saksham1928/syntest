@@ -108,7 +108,7 @@ export function useFaceMeshDetection(webcamRef, options = {}) {
 
           setDebugInfo(
             `Focused | Eyes: ${focusResult.details.eyeAspectRatio} | ` +
-            `Yaw: ${focusResult.details.yaw}° | Pitch: ${focusResult.details.pitch}°`
+            `Yaw: ${focusResult.details.yaw}° |Roll: ${focusResult.details.roll}° |Pitch: ${focusResult.details.pitch}°`
           );
         } else {
           // User lost focus
@@ -122,7 +122,7 @@ export function useFaceMeshDetection(webcamRef, options = {}) {
           setDebugInfo(
             ` Not Focused (${timeSinceFocus}ms) | Reason: ${reasons.join(", ")} | ` +
             `EAR: ${focusResult.details.eyeAspectRatio} | ` +
-            `Yaw: ${focusResult.details.yaw}° | Pitch: ${focusResult.details.pitch}°`
+            `Yaw: ${focusResult.details.yaw}° |Roll: ${focusResult.details.roll}° | Pitch: ${focusResult.details.pitch}°`
           );
 
           // Check if focus was lost for too long

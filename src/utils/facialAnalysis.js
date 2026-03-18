@@ -1,3 +1,4 @@
+import {FACE_DETECTION_CONFIG} from './faceDetectionConfig';
 export function calculateEyeAspectRatio(eyeLandmarks) {
   // Eye landmarks (6 points per eye)
   // For left eye: points [33, 160, 158, 133, 153, 144]
@@ -71,10 +72,10 @@ function distance(p1, p2) {
  */
 export function detectFocus(faceLandmarks) {
   // Thresholds (adjust these based on testing)
-  const EYE_CLOSED_THRESHOLD = 0.15;  // Below this = eyes closed
-  const YAW_THRESHOLD = 25;            // Degrees turned left/right
-  const PITCH_THRESHOLD = 20;          // Degrees looking up/down
-  const ROLL_THRESHOLD = 25;           // Degrees head tilted
+  const EYE_CLOSED_THRESHOLD = FACE_DETECTION_CONFIG.EYE_CLOSED_THRESHOLD;
+  const YAW_THRESHOLD = FACE_DETECTION_CONFIG.YAW_THRESHOLD;
+  const PITCH_THRESHOLD = FACE_DETECTION_CONFIG.PITCH_THRESHOLD;
+  const ROLL_THRESHOLD = FACE_DETECTION_CONFIG.ROLL_THRESHOLD;
 
   // Extract eye landmarks
   const leftEyeLandmarks = [

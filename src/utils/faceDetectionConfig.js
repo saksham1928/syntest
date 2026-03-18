@@ -18,7 +18,7 @@ export const FACE_DETECTION_CONFIG = {
   
   // Focus detection thresholds
   EYE_CLOSED_THRESHOLD: 0.15,
-  YAW_THRESHOLD: 25,      // Horizontal head turn (degrees)
-  PITCH_THRESHOLD: 15,    // Vertical head turn (degrees)
-  ROLL_THRESHOLD: 25,     // Head tilt (degrees)
+  YAW_THRESHOLD: 10,      // Horizontal head turn (degrees)
+  PITCH_THRESHOLD: 20,    // Vertical head turn (degrees)
+  ROLL_THRESHOLD: 40,     // Head tilt (degrees)
 };
