@@ -13,9 +13,6 @@ function App() {
           <h1 className="text-3xl font-bold text-blue-400">Lecture 1: Introduction to React</h1>
           <p className="text-gray-400">AI Engagement Monitor: Active</p>
         </div>
-
-        {/* 3. The Video Player Component */}
-        {/* <VideoPlayer /> */}
       </main>
       <AutoControlledVideo />;
     </div>

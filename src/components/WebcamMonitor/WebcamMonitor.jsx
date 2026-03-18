@@ -1,4 +1,4 @@
-import { forwardRef, useState, } from "react";
+import { forwardRef } from "react";
 import Webcam from "react-webcam";
 import { FACE_DETECTION_CONFIG } from "../../utils/faceDetectionConfig";
 
